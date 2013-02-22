@@ -1,0 +1,11 @@
+#AddHandler cgi-php5 .php
+
+SetEnv APPLICATION_ENV dev
+
+# clean url
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteRule ^ index.php [L]

@@ -1,0 +1,12 @@
+input[type="submit"]{
+  border: none;
+  
+}
+
+input.club_bcorazones {
+  background: #e1005a;
+}
+
+input.alerts_mala {
+  background: #4a5d5b;
+}
