@@ -12,8 +12,8 @@
 <?php endif;?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php 
-      $img_service = $this->img_path .'service/'. $service->key . '/'. $service->key .'-'.$this->width.'.jpg';
-      $service_url = $this->base . $service->key . '/validate'; 
+      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$this->width);
+      $service_url = $this->base . $service->key . '/validate';
     ?>
     
     <a style="" href="<?php echo $service_url?>">

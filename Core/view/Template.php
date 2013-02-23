@@ -3,6 +3,8 @@
  * 
  */
 
+include_once 'Core/lib/tmg/Image.php';
+ 
 define("MODE_WML", 1);
 define("MODE_MOBIL", 2);
 define("MODE_TABLET", 3);
@@ -64,6 +66,11 @@ class ViewTemplate {
     }else {
       include 'template/'.$this->templatePath.'navegador.php';
     }
+  }
+  
+  public function getImgUrl($url,$width){
+    $toolImg = new TmgImage($this->img_path,'/img/');
+    return $toolImg->getImage($url,$width);
   }
 }
 ?>

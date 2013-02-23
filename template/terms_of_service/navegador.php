@@ -1,8 +1,9 @@
 <?php echo '<?xml version="1.0"?>' ?>
 
 <?php
-  $img_service = $this->img_path .'service/'. $this->service . '/'. $this->service .'-'.$this->width.'.jpg';
-  $img_btn = $this->img_path . 'btn/regresar-'.$this->width.'.jpg';
+  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.jpg',$this->width);
+  $img_btn = $this->getImgUrl('btn/regresar.jpg',$this->width);
+    
   $return_url = $this->base . $this->service . '/validate';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" >
