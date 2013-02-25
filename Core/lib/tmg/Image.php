@@ -73,7 +73,7 @@ class TmgImage {
     }
      
     if(!isset($height)){
-      $height = ($width * $info[1] / $info[0]);
+      $height = floor($width * $info[1] / $info[0]);
     }
     
     if($width != $info[0] || $height != $info[1]){
