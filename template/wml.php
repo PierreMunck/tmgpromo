@@ -10,7 +10,7 @@
 <?php endif;?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php 
-      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$this->width);
+      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.gif',$this->width);
       $service_url = $this->base . $service->key . '/validate'; 
     ?>
     <anchor>

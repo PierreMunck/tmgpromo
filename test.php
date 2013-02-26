@@ -1,48 +1,50 @@
-<?php
-define('ROOTPATH', getcwd());
-include_once 'Core/lib/tmg/Image.php';
+<?php echo '<?xml version="1.0"?>' ?>
 
-$tools = new TmgImage('img/','/img/');
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" >
+  <head>
+    <link href="template/css/navegador.css" rel="stylesheet" type="text/css"  />
+  </head>
+  <body>
+    <?php
 
-
-
-$url_imgnot = $tools->getImage('service/ALERTS_MALA2/not.jpg');
-
-$url_img_equiv = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg');
-
-$url_img100 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',100);
-
-$url_img50 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',50);
-
-$url_img100100 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',100,100);
-
-$url_imgrot1 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',NULL,NULL,ORIENTATION1);
-
-$url_imgrot2 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',NULL,NULL,ORIENTATION2);
-
-$url_imgrot3 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',NULL,NULL,ORIENTATION3);
-
-$url_imgrot4 = $tools->getImage('service/ALERTS_MALA2/ALERTS_MALA2.jpg',NULL,NULL,ORIENTATION4);
-
-
+$serviceList = array(
+  'CLUB_BCORAZONES',
+  'ALERTS_MALA'
+);
 
 ?>
-
-<img src="<?php echo $url_imgnot?>" />
-
-<img src="<?php echo $url_img_equiv?>" />
-
-<img src="<?php echo $url_img100?>" />
-
-<img src="<?php echo $url_img50?>" />
-
-<img src="<?php echo $url_img100100?>" />
-
-<img src="<?php echo $url_imgrot1?>" />
-
-<img src="<?php echo $url_imgrot2?>" />
-
-<img src="<?php echo $url_imgrot3?>" />
-
-<img src="<?php echo $url_imgrot4?>" />
-
+  <?php $i = 0; ?>
+  <?php foreach ($serviceList as $service) :?>
+    <?php
+      $j = $i % 4;
+      $class = " ";
+      $width = 175;
+      $height = $width * 0.3;
+      if($j == 0 || $j == 3){
+        $width = floor($width * 0.68);
+        
+        $class = " block-medium";
+      }
+      if($j == 1 || $j == 2){
+        $width = floor($width * 0.28);
+        $class = " block-small";
+      }
+      
+      $img_service = 'img/service/'. $service . '/'. $service .'.jpg';
+      $service_url = $service . '/validate';
+      
+    ?>
+    <a style="" href="<?php echo $service_url?>">
+    <div class="block-service<?php echo $class ?>" height="<?php echo $height ?>">
+      <h3 height="10%">titltlt </h3>
+      <img title="tittlele" src="<?php echo $img_service?>" width="100%" />
+      <p height="10%">
+        desc
+      </p>
+    </div>
+    </a>
+    <?php $i++; ?>
+  <?php endforeach?>
+  
+  </body>
+</html>

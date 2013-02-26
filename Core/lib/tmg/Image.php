@@ -139,7 +139,7 @@ class TmgImage {
         @imagegif($this->image, $save_path);
         break;
       case 'png' :
-        @imagepng($this->image, $save_path,10);
+        @imagepng($this->image, $save_path,9);
         break;
       default :
         $this->image = null;

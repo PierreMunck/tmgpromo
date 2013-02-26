@@ -15,12 +15,12 @@
 <?php endif;?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php 
-      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$this->width);
+      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.gif',$this->width);
       $service_url = $this->base . $service->key . '/validate'; 
     ?>
     
     <a style="" href="<?php echo $service_url?>">
-      <img title="<?php echo $service->name ?>" src="<?php echo $img_service?>" />
+      <img title="<?php echo $service->name ?>" src="<?php echo $img_service?>" width="100%"/>
     </a>
     <p>
       <?php echo $service->description ?>

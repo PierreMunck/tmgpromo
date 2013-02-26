@@ -50,4 +50,5 @@ if(isset($view)){
 }else{
   echo 'error View';
 }
+
 ?>

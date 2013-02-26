@@ -1,7 +1,7 @@
 <?php echo '<?xml version="1.0"?>' ?>
 
 <?php
-  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.jpg',$this->width);
+  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.gif',$this->width);
   $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" >
