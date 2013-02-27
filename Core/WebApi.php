@@ -33,8 +33,8 @@ class WebApi {
     $curl = new Curl();
   
     $curl->addPostVar('q','Register');
-    $curl->addPostVar('user','buscacorazones');
-    $curl->addPostVar('password','testtest');
+    $curl->addPostVar('user',$GLOBALS['tmgConfig']['tokenAccess']['user']);
+    $curl->addPostVar('password',$GLOBALS['tmgConfig']['tokenAccess']['password']);
     $curl->addPostVar('service',$this->service);
     $curl->addPostVar('session',$session);
     if(isset($GLOBALS['tmgConfig']['urlToken'])){
