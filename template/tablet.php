@@ -13,6 +13,7 @@
     <?php echo $this->subscribed->mesage ?>
   </p>
 <?php endif;?>
+<?php if(isset($this->serviceList)) :?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php 
       $img_service = $this->img_path .'service/'. $service->key . '/'. $service->key .'-'.$this->width.'.jpg';
@@ -26,6 +27,6 @@
       <?php echo $service->description ?>
     </p>
   <?php endforeach?>
-  
+  <?php endif?>
   </body>
 </html>

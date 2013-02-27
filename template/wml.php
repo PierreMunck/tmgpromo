@@ -8,6 +8,7 @@
     <?php echo $this->subscribed->mesage ?>
   </p>
 <?php endif;?>
+  <?php if(isset($this->serviceList)) :?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php 
       $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.gif',$this->width);
@@ -21,5 +22,6 @@
       <?php echo $service->description ?>
     </p>
   <?php endforeach?>
+  <? endif?>
   </card>
 </wml>

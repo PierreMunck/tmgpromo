@@ -20,6 +20,7 @@
   </p>
 <?php endif;?>
   <?php $i = 0; ?>
+  <?php if(isset($this->serviceList)) :?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php
       $j = $i % 4;
@@ -49,6 +50,6 @@
     </a>
     <?php $i++; ?>
   <?php endforeach?>
-  
+  <?php endif?>
   </body>
 </html>
