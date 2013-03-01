@@ -1,7 +1,7 @@
 <?php echo '<?xml version="1.0"?>' ?>
 <?php
       $width = 800;
-      $height = $width * 0.3;
+      $height = floor($width * 0.3);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" >
   <head>

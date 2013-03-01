@@ -1,19 +1,21 @@
 <?php
 define('ROOTPATH', getcwd());
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
 include_once 'Mobile_Detect/Mobile_Detect.php';
 include_once 'Mobile_Detect/UAProf.php';
 
 session_start();
 
-$tmgConfig = parse_ini_file('tmg.conf',true);
+$tmgConfig = parse_ini_file('tmg.'.APPLICATION_ENV.'.conf',true);
 
 $tmgConfig['base'] .= '/';
 $mobile_detect = new Mobile_Detect();
 
 $UaProf = NULL;
 if(isset($_SERVER['HTTP_X_WAP_PROFILE'])){
-  $url = substr($_SERVER['HTTP_X_WAP_PROFILE'], 1, -1);
+  $url = str_replace('\'','',$_SERVER['HTTP_X_WAP_PROFILE']);
+  $url = str_replace('"','',$url);
   $UaProf = new UAProf();
   $UaProf->process($url);
 }
