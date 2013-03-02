@@ -34,7 +34,6 @@ input.alerts_mala {
 body {
   background-color: #f7f7f7;
   margin:auto;
-  /*width: 800px;*/
 }
 
 a{
@@ -45,30 +44,22 @@ a{
   background-color: #ffffff;
   display: block;
   float: left;
-  margin: 0 0.5% 0.1% 0.5%;
   color: #000000;
 }
 
 .block-service img{
   border-bottom: 1px solid #cccccc;
   border-top: 1px solid #cccccc;
-  /*height: 80%;
-  width: 100%;*/
 }
 
 .block-service h3{
-  /*height: 10%;
-  width: 100%;*/
+
 }
  
 .block-service p{
-  /*height: 10%;
-  width: 100%;*/
+
 }
 
 .block-service:hover{
-  border-left : 1px solid #f7f7f7;
-  border-top : 1px solid #f7f7f7;
-  /*background-color: #eeeeee;*/
-  /*color: #cccccc;*/
+
 }

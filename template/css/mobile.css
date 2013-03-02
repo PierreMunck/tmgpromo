@@ -1,0 +1,65 @@
+p{
+  margin: 0;
+  padding: 0;
+}
+
+h1{
+  margin: 0;
+  padding: 0;
+}
+
+h2{
+  margin: 0;
+  padding: 0;
+}
+
+h3{
+  margin: 0;
+  padding: 0;
+}
+
+input[type="submit"]{
+  border: none;
+  
+}
+
+input.club_bcorazones {
+  background: #e1005a;
+}
+
+input.alerts_mala {
+  background: #4a5d5b;
+}
+
+body {
+  background-color: #f7f7f7;
+  margin:auto;
+}
+
+a{
+  text-decoration: none;
+}
+
+.block-service {
+  background-color: #ffffff;
+  display: block;
+  float: left;
+  color: #000000;
+}
+
+.block-service img{
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+.block-service h3{
+
+}
+ 
+.block-service p{
+
+}
+
+.block-service:hover{
+
+}
