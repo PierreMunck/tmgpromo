@@ -122,7 +122,6 @@ class WebApi {
   
   public function validate(){
     $view = NULL;
-    
     $this->chargeServiceInfo();
     if(isset($this->serviceInfo)){
       include_once 'Core/view/ValidateTemplate.php';

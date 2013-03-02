@@ -11,9 +11,10 @@ if($height == 0){
 <?php echo '<?xml version="1.0"?>' ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" >
   <head>
+    <link href="template/css/mobile.css" rel="stylesheet" type="text/css"  />
     <style type="text/css">
       a {text-decoration:none;}
-      <?php
+    <?php
       $block_height = floor($height * 0.33);
       echo ".block-large {width:10; height:".$block_height."px}\n";
       echo ".block-medium {width: 69%; height:".$block_height."px}\n";
@@ -31,7 +32,7 @@ if($height == 0){
     <?php echo $this->subscribed->mesage ?>
   </p>
 <?php endif;?>
-  <?php if(isset($this->serviceList)) :?>
+<?php if(isset($this->serviceList)) :?>
   <?php $i = 0; ?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php
@@ -46,7 +47,7 @@ if($height == 0){
         $class = " block-small";
       }
       $img_height = floor($block_height * 0.79);
-      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.gif',$block_width,$img_height);
+      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$block_width,$img_height);
       $service_url = $this->base . $service->key . '/validate'; 
     ?>
     
@@ -58,7 +59,8 @@ if($height == 0){
       </p>
       </div>
     </a>
+    <?php $i++; ?>
   <?php endforeach?>
-  <?php endif?>
+<?php endif?>
   </body>
 </html>
