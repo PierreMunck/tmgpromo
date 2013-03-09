@@ -69,7 +69,6 @@ class UAProf
    *               - accept_video
    */
   public function process($file) {
-    print_r($file);
     $this->data = array(
       'vendor'=>'',
       'model'=>'',

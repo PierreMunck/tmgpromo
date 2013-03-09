@@ -56,13 +56,12 @@ class WebApi {
     if(isset($subscriber_number)){
       $curl->addPostVar('subscriber_number',$subscriber_number);
     }
-    
     if(isset($GLOBALS['tmgConfig']['urlWebApp'][$action])){
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp'][$action]);
     }
     if($curl->getHeader('http_code') == 200){
       if($action == 'subscribe'){
-        print_r($curl->getResult());
+        //print_r($curl->getResult());
       }
       return json_decode($curl->getResult());
     }

@@ -11,7 +11,7 @@ if($height == 0){
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" >
   <head>
     <meta charset="UTF-8">
-    <link href="template/css/navegador.css" rel="stylesheet" type="text/css"  />
+    <link href="<?php echo $this->base ?>template/css/navegador.css" rel="stylesheet" type="text/css"  />
     <style type="text/css">
     <?php
       $block_height = floor($height * 0.33);

@@ -42,14 +42,14 @@ $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
       <form name="" action="confirm?token=<?php echo $this->token?>" method="post">
         Ingreza su país
         <br/>
-        <select id="prefix" name="prefix" width="<?php echo $this->width?>" style="width:100%">
+        <select id="prefix" name="prefix" width="<?php echo $this->width?>" style="width:100%; height:<?php echo $this->width * 0.05?>px">
           <option title="Nicaragua (505)" value="505">Nicaragua (505)</option>
           <option title="Honduras (504)" value="504">Honduras (504)</option>
         </select>
         <br/>
         Ingreza su numero
         <br/>
-        <input type="number" id="mobile" name="mobile" style="width:100%">
+        <input type="number" id="mobile" name="mobile" style="width:100%; height:<?php echo $this->width * 0.05?>px">
         <input type="image" src="<?php echo $img_btn?>" alt="Validate" width="100%">
       </form>
     <?php endif;?>

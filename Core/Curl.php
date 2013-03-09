@@ -12,6 +12,12 @@ class Curl {
   private $postVars;
   
   /**
+   * Contains the vars to send by GET
+   * @var array
+   */
+  private $getVars;
+  
+  /**
    * cURL handler
    * @var ressource
    */
@@ -170,6 +176,31 @@ class Curl {
     }
   }
   
+  /**
+   * Add get vars
+   * @param string $name
+   * @param stringe $value
+   */
+  public function addGetVar($name,$value = NULL) {
+    if(is_array($name)){
+      foreach ($name as $key => $value) {
+        $this->getVars[$key] = $value;
+      }
+    }elseif(is_string($name) && !is_null($value)){
+      $this->getVars[$name] = $value;
+    }
+  }
+  
+  /**
+   * delete get vars
+   * @param string $name
+   */
+  public function delGetVar($name) {
+    if(is_string($name)){
+      unset($this->getVars[$name]);
+    }
+  }
+  
   
   /**
    * Execute the request and return the result
@@ -177,6 +208,21 @@ class Curl {
    * @return string
    */
   public function exec($url) {
+    
+    // Send the GET vars
+    if (sizeof($this->getVars) > 0) {
+      $getVars = '';
+      foreach($this->getVars as $name => $value) {
+        $getVars .= $name.'='.$value.'&';
+      }
+      $getVars = substr($getVars,0,strlen($getVars)-1);
+      if (strpos($getVars,'?') === false) {
+        $url .= '?'.$getVars;
+      }else{
+        $url .= '&'.$getVars;
+      }
+    }
+    
     // Set the options
     curl_setopt ($this->ch, CURLOPT_URL,$url);
     
@@ -200,12 +246,12 @@ class Curl {
       curl_setopt ($this->ch, CURLOPT_POST, 1);
     }
     
+    
     // Execute and retrieve the result
     $t = '';
     while ($t == '') {
       $t = curl_exec($this->ch);
     }
-    
     $this->r_text = $t;
     $this->r_headers = curl_getinfo($this->ch);
     
