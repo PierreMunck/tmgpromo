@@ -24,7 +24,6 @@ $api->logData('download_ip',$_SERVER['REMOTE_ADDR']);
 $api->logData('download_browser',$_SERVER['HTTP_USER_AGENT']);
 $api->logData('download_date',$_SERVER['REQUEST_TIME']);
 
-
 if(!isset($service)){
   $view = $api->index();
 }else {

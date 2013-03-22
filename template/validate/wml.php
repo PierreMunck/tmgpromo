@@ -1,7 +1,7 @@
 <?php echo '<?xml version="1.0"?>' ?>
 <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"  "http://www.wapforum.org/DTD/wml_1.1.xml">
 <?php
-  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.gif',$this->width);
+  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.jpg',$this->width);
   $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
 ?>
 <wml>
@@ -12,6 +12,9 @@
     </p>
   <?php endif;?>
     <p><img src="<?php echo $img_service?>" /></p>
+    <p width="<?php echo $this->width?>">
+      <?php echo $this->service_description?>
+    </p>
     <?php if(isset($this->subscriber_number)) : ?>
     <p>
       Yo confirmo mi numero
@@ -41,8 +44,8 @@
       </anchor>
     </p>
     <?php endif;?>
-    <p>
-      accepto <a href="term_of_service">los terminos del servicio</a> <?php echo $this->service_name?>
+    <p width="<?php echo $this->width?>">
+      <?php echo $this->service_term_of_service?>
     </p>
   </card>
 </wml>

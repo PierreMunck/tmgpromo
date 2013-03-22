@@ -17,11 +17,14 @@ class TmgImage {
   private $img_dir_path = NULL;
   private $img_base_url = NULL;
   private $image = NULL;
+  private $format = NULL;
   
-  function __construct($img_url,$img_path = null) {
+  function __construct($img_url,$img_path = null, $format = null) {
     
     $this->base_url = $img_url;
-    
+    if(isset($format)){
+      $this->format = $format;
+    }
     if(isset($img_path)){
       $this->dir_path = ROOTPATH.$img_path;
     }else{
@@ -104,9 +107,13 @@ class TmgImage {
     if(!isset($this->img_ext) || !isset($this->img_dir_path) || !isset($this->img_name)){
       return FALSE;
     }
-    
-    $path_img_base = $this->img_dir_path . DIRECTORY_SEPARATOR . $this->img_name . '.' . $this->img_ext;
-    
+    $path_img_base = $this->img_dir_path . DIRECTORY_SEPARATOR . $this->img_name .'.'. $this->img_ext;
+    if(isset($this->format)){
+      $path_img_base = $this->img_dir_path . DIRECTORY_SEPARATOR . $this->img_name .'-'. $this->format .'.'. $this->img_ext;
+      if(!file_exists( $path_img_base )){
+        $path_img_base = $this->img_dir_path . DIRECTORY_SEPARATOR . $this->img_name .'.'. $this->img_ext;
+      }
+    }
     switch ($this->img_ext) {
       case 'jpg' :
       case 'jpeg' :

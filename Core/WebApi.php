@@ -10,6 +10,7 @@ class WebApi {
   private $token;
   private $serviceInfo = NULL;
   private $subscriberNumber = NULL;
+  private $GetNumberFromHeader = FALSE;
   private $logData = array();
   public $view = NULL;
   
@@ -45,12 +46,25 @@ class WebApi {
     }
   }
 
+  public function callLog(){
+    $curl = new Curl();
+    $curl->addPostVar('data',json_encode($this->logData));
+    if(isset($GLOBALS['tmgConfig']['urlWebApp']['log'])){
+      $curl->exec($GLOBALS['tmgConfig']['urlWebApp']['log']);
+    }
+    if($curl->getHeader('http_code') == 200){
+      return TRUE;
+    }
+    return FALSE;
+  }
+  
   public function callService($action,$session,$subscriber_number = NULL){
     $curl = new Curl();
 
     $curl->addPostVar('token',$this->token);
     $curl->addPostVar('service',$this->service);
     $curl->addPostVar('session',$session);
+    $curl->addPostVar('forceDobleOptin',(!$this->GetNumberFromHeader));
     $curl->addPostVar('logData',json_encode($this->logData));
     
     if(isset($subscriber_number)){
@@ -87,6 +101,8 @@ class WebApi {
     foreach ($_SERVER as $key => $value) {
       if(preg_match('/MSISDN/i', $key)){
         $this->subscriberNumber = $_SERVER[$key]; // http://en.wikipedia.org/wiki/MSISDN
+        $this->logData('subscriber_number',$this->subscriberNumber);
+        $this->GetNumberFromHeader = TRUE;
         return $this->subscriberNumber;
       }
       if(preg_match('/IMSI/i', $key)){
@@ -110,17 +126,20 @@ class WebApi {
     
     if(isset($prefix) && isset($mobil)){
       $this->subscriberNumber = $prefix.$mobil;
+      $this->logData('subscriber_number',$this->subscriberNumber);
       return $this->subscriberNumber;
     }
     
     if(isset($_POST['subscriber_number'])){
       $this->subscriberNumber = $_POST['subscriber_number'];
     }
+    $this->logData('subscriber_number',$this->subscriberNumber);
     return $this->subscriberNumber;
   }
   
   public function validate(){
     $view = NULL;
+    $this->callLog();
     $this->chargeServiceInfo();
     if(isset($this->serviceInfo)){
       include_once 'Core/view/ValidateTemplate.php';
@@ -130,6 +149,8 @@ class WebApi {
       $view = new ViewValidateTemplate($this->serviceInfo);
       $view->setValue('token',$this->token);
       $view->setValue('service',$this->service);
+      $view->setValue('service_term_of_service',$this->serviceInfo->term_of_service);
+      $view->setValue('service_description',$this->serviceInfo->description);
       if(isset($this->subscriberNumber)){
         $view->setValue('subscriber_number',$this->subscriberNumber);
       }
@@ -154,6 +175,8 @@ class WebApi {
         $view->setValue('serviceList',$serviceList);
         $view->setValue('subscribed',$subscribed);
         $view->setValue('subscribed_service',$this->serviceInfo);
+        $view->setValue('service_term_of_service',$this->serviceInfo->term_of_service);
+        $view->setValue('service_description',$this->serviceInfo->description);
         return $view;
       }
       
@@ -162,6 +185,8 @@ class WebApi {
       $view->setValue('token',$this->token);
       $view->setValue('service',$this->service);
       $view->setValue('subscribed',$subscribed);
+      $view->setValue('service_term_of_service',$this->serviceInfo->term_of_service);
+      $view->setValue('service_description',$this->serviceInfo->description);
     }
     return $view;
   }
@@ -169,6 +194,7 @@ class WebApi {
   public function term_of_service(){
     $view = NULL;
     $service_info = $this->chargeServiceInfo();
+    $this->callLog();
     if(isset($service_info)){
       include_once 'Core/view/TermServiceTemplate.php';
       
@@ -184,6 +210,7 @@ class WebApi {
   
   public function index(){
     include_once 'Core/view/IndexTemplate.php';
+    $this->callLog();
     $view = new ViewIndexTemplate();
     $serviceList = $this->getServiceList();
     $view->setValue('serviceList',$serviceList);

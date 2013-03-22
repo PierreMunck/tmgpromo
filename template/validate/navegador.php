@@ -7,7 +7,7 @@ if($height == 0){
 }
 
 
-$img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.gif',$this->width);
+$img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.jpg',$this->width);
 $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
 
 ?>
@@ -33,6 +33,9 @@ $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
 <?php endif;?>
   <div class="block-service" >
     <img src="<?php echo $img_service?>" />
+    <p width="<?php echo $this->width?>">
+      <?php echo $this->service_description?>
+    </p>
     <?php if(isset($this->subscriber_number)) : ?>
       <form name="" action="confirm?token=<?php echo $this->token?>" method="post">
         <input type="hidden" id="subscriber_number" name="subscriber_number">
@@ -54,8 +57,7 @@ $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
       </form>
     <?php endif;?>
     <p width="<?php echo $this->width?>">
-      accepto <a href="term_of_service">los terminos del servicio</a>
-      <?php echo $this->service_name?>
+      <?php echo $this->service_term_of_service?>
     </p>
   </div>
   </body>

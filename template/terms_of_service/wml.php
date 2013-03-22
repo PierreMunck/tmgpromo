@@ -1,7 +1,7 @@
 <?php echo '<?xml version="1.0"?>' ?>
 <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"  "http://www.wapforum.org/DTD/wml_1.1.xml">
 <?php
-  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.gif',$this->width);
+  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.jpg',$this->width);
   $img_btn = $this->getImgUrl('btn/regresar.gif',$this->width);
   
   $return_url = $this->base . $this->service . '/validate';

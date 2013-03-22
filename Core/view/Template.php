@@ -68,9 +68,9 @@ class ViewTemplate {
     }
   }
   
-  public function getImgUrl($url,$width){
-    $toolImg = new TmgImage($this->img_path,'/img/');
-    return $toolImg->getImage($url,$width);
+  public function getImgUrl($url,$width,$height = NULL,$format = NULL){
+    $toolImg = new TmgImage($this->img_path,'/img/',$format);
+    return $toolImg->getImage($url,$width,$height);
   }
 }
 ?>

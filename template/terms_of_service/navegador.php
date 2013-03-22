@@ -1,7 +1,7 @@
 <?php echo '<?xml version="1.0"?>' ?>
 
 <?php
-  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.gif',$this->width);
+  $img_service = $this->getImgUrl('service/'. $this->service . '/'. $this->service .'.jpg',$this->width);
   $img_btn = $this->getImgUrl('btn/regresar.gif',$this->width);
     
   $return_url = $this->base . $this->service . '/validate';

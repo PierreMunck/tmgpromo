@@ -37,6 +37,7 @@ if($height == 0){
     <?php
       $j = $i % 4;
       $class = " ";
+      $format = NULL;
       if($j == 0 || $j == 3){
         $block_width = floor($width * 0.69);
         $class = " block-medium";
@@ -44,9 +45,10 @@ if($height == 0){
       if($j == 1 || $j == 2){
         $block_width = floor($width * 0.29);
         $class = " block-small";
+        $format = 'lt';
       }
       $img_height = floor($block_height * 0.79);
-      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$block_width,$img_height);
+      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$block_width,$img_height,$format);
       $service_url = $this->base . $service->key . '/validate'; 
     ?>
     
