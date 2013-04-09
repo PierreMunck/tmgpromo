@@ -1,0 +1,3 @@
+# TMG 
+User-agent: *
+Disallow: 

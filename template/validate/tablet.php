@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <style type="text/css">
       a {text-decoration:none;}
+      .termofservice {color:#bbbbbb;}
     </style>
     
   </head>
@@ -39,7 +40,7 @@
         <input type="image" src="<?php echo $img_btn?>" alt="Validate">
       </form>
     <?php endif;?>
-    <p width="<?php echo $this->width?>">
+    <p width="<?php echo $this->width?>" class="termofservice">
       accepto <a href="term_of_service">los terminos del servicio</a>
       <?php echo $this->service_name?>
     </p>

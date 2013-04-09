@@ -13,12 +13,8 @@ if($height == 0){
     <meta charset="UTF-8">
     <link href="<?php echo $this->base ?>template/css/navegador.css" rel="stylesheet" type="text/css"  />
     <style type="text/css">
+    a {text-decoration:none; color:#000000;}
     <?php
-      $block_height = floor($height * 0.33);
-      echo ".block-large {width:10; height:".$block_height."px}\n";
-      echo ".block-medium {width: 69%; height:".$block_height."px}\n";
-      echo ".block-small {width: 29%; height:".$block_height."px}\n";
-      echo ".block-service {margin: 2px 0.5%; height:".$block_height."px}\n";
       echo ".block-service img{width: 100%}\n";
     ?>
     </style>
@@ -35,31 +31,23 @@ if($height == 0){
   <?php $i = 0; ?>
   <?php foreach ($this->serviceList as $service) :?>
     <?php
-      $j = $i % 4;
-      $class = " ";
       $format = NULL;
-      if($j == 0 || $j == 3){
-        $block_width = floor($width * 0.69);
-        $class = " block-medium";
-      }
-      if($j == 1 || $j == 2){
-        $block_width = floor($width * 0.29);
-        $class = " block-small";
-        $format = 'lt';
-      }
+      $block_height = floor($height * 0.33);
       $img_height = floor($block_height * 0.79);
-      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$block_width,$img_height,$format);
+      $img_service = $this->getImgUrl('service/'. $service->key . '/'. $service->key .'.jpg',$width,$img_height,$format);
       $service_url = $this->base . $service->key . '/validate'; 
     ?>
     
-    <a style="" href="<?php echo $service_url?>">
-      <div class="block-service<?php echo $class ?>" >
-      <img title="<?php echo $service->name ?>" src="<?php echo $img_service?>" height="<?php echo $img_height ?>"/>
-      <p>
-        <?php echo $service->name ?> <?php echo $service->description ?>
-      </p>
-      </div>
-    </a>
+    
+    <div class="block-service" >
+      <a style="" href="<?php echo $service_url?>">
+        <img title="<?php echo $service->name ?>" src="<?php echo $img_service?>" height="<?php echo $img_height ?>"/>
+        <p>
+          <?php echo $service->description ?>
+        </p>
+      </a>
+    </div>
+    
     <?php $i++; ?>
   <?php endforeach?>
 <?php endif?>

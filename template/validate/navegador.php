@@ -22,6 +22,7 @@ $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
     <link href="template/css/navegador.css" rel="stylesheet" type="text/css"  />
     <style type="text/css">
       a {text-decoration:none;}
+      .termofservice {color:#bbbbbb;}
     </style>
     
   </head>
@@ -56,7 +57,7 @@ $img_btn = $this->getImgUrl('btn/confirmar.gif',$this->width);
         <input type="image" src="<?php echo $img_btn?>" alt="Validate" width="100%">
       </form>
     <?php endif;?>
-    <p width="<?php echo $this->width?>">
+    <p width="<?php echo $this->width?>" class="termofservice">
       <?php echo $this->service_term_of_service?>
     </p>
   </div>

@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <style type="text/css">
       a {text-decoration:none;}
+      .termofservice {color:#bbbbbb;}
     </style>
     
   </head>
@@ -25,7 +26,7 @@
     <?php if(isset($this->subscriber_number)) : ?>
       <form name="" action="confirm?token=<?php echo $this->token?>" method="post">
         <input type="hidden" id="subscriber_number" name="subscriber_number">
-        <input type="submit" value="Validate" width="<?php echo $this->width?>">
+        <input type="image" src="<?php echo $img_btn?>" alt="Presione aqui y suscribete">
       </form>
     <?php else :?>
       <form name="" action="confirm?token=<?php echo $this->token?>" method="post">
@@ -39,10 +40,10 @@
         Ingreza su numero
         <br/>
         <input type="number" id="mobile" name="mobile" width="<?php echo $this->width?>">
-        <input type="image" src="<?php echo $img_btn?>" alt="Validate">
+        <input type="image" src="<?php echo $img_btn?>" alt="Presione aqui y suscribete">
       </form>
     <?php endif;?>
-    <p width="<?php echo $this->width?>">
+    <p width="<?php echo $this->width?>" class="termofservice">
       <?php echo $this->service_term_of_service?>
     </p>
 

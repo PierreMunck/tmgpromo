@@ -40,7 +40,7 @@
             <postfield name="prefix" value="$(prefix)"/>
             <postfield name="mobile" value="$(mobile)"/>
         </go>
-        Validate
+        Presione aqui y suscribete
       </anchor>
     </p>
     <?php endif;?>
