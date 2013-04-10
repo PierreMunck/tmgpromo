@@ -101,12 +101,24 @@ class WebApi {
     //TODO : codigo segun el header del operador
     foreach ($_SERVER as $key => $value) {
       $this->logData($key,$_SERVER[$key]);
+      if(preg_match('/LINE-ID/i', $key)){
+        $this->subscriberNumber = $_SERVER[$key]; // 
+      }
+      if(preg_match('/LINE_ID/i', $key)){
+        $this->subscriberNumber = $_SERVER[$key]; // 
+      }
       if(preg_match('/MSISDN/i', $key)){
         $this->subscriberNumber = $_SERVER[$key]; // http://en.wikipedia.org/wiki/MSISDN
         $this->logData('subscriber_number',$this->subscriberNumber);
         $this->GetNumberFromHeader = TRUE;
         return $this->subscriberNumber;
       }
+      if(isset($this->subscriberNumber)){
+        $this->logData('subscriber_number',$this->subscriberNumber);
+        $this->GetNumberFromHeader = TRUE;
+        return $this->subscriberNumber;
+      }
+      
       if(preg_match('/IMSI/i', $key)){
         // http://en.wikipedia.org/wiki/IMSI
       }

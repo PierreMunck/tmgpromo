@@ -41,8 +41,8 @@ if($height == 0){
     
     <div class="block-service" >
       <a style="" href="<?php echo $service_url?>">
-        <img title="<?php echo $service->name ?>" src="<?php echo $img_service?>" height="<?php echo $img_height ?>"/>
-        <p>
+        <img title="<?php echo $service->name ?>" src="<?php echo $img_service?>"/>
+        <p width="<?php echo $this->width?>">
           <?php echo $service->description ?>
         </p>
       </a>
