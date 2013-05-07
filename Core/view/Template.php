@@ -15,10 +15,11 @@ class ViewTemplate {
   protected $width = 1024;
   protected $height = 800;
   private   $optimWidth = array(450,300,200,170,150);
-  private   $mode = MODE_NAVIGADOR;
+  protected $mode = MODE_NAVIGADOR;
   protected $templatePath = '';
-  private $img_path = 'img/';
-  private $base = '/';
+  private   $img_path = 'img/';
+  private   $base = '/';
+  protected $form = NULL;
   
   public function __construct() {
      $this->img_path = $GLOBALS['tmgConfig']['base'] . $this->img_path;
@@ -54,6 +55,10 @@ class ViewTemplate {
   
   public function setValue($name,$value){
     $this->$name = $value;
+  }
+  
+  public function setForm($form){
+    $this->form = $form;
   }
   
   public function render(){

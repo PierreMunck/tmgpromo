@@ -1,0 +1,86 @@
+<?php
+
+require_once "Item.php";
+
+class FormSelectItem extends FormItem{
+  protected $fieldValues = array();
+  protected $fieldMultiple = false;
+  protected $fieldDefaultOption = array();
+  
+  public function __construct($mode = 'View') {
+    parent::__construct('Select',$mode);
+  }
+  
+  public function setMultiple($multiple){
+    $this->fieldMultiple = $multiple;
+  }
+  
+  public function setDefaultOption($defaultOption){
+    $this->fieldDefaultOption = $defaultOption;
+  }
+  
+  public function addFieldValues($value,$key = NULL){
+    if(is_array($value)){
+      foreach ($value as $key => $value) {
+        $this->fieldValues[$key] = $value;
+      }
+    }elseif(isset($key)) {
+      $this->fieldValues[$key] = $value;
+    }else{
+      $this->fieldValues = array();
+      $this->fieldValues[] = $value;
+    }
+  }
+  
+  public function setFieldValue($value){
+    if(isset($this->fieldMultiple) && $this->fieldMultiple == true){
+      $this->fieldValue = explode(',', $value);
+    }else{
+      $this->fieldValue = $value;
+    }
+  }
+  
+  protected function renderSelectEdit(){
+    $out = '<select ';
+    if(isset($this->fieldClass)){
+      $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
+    }
+    if(isset($this->fieldId)){
+      $out .= ' id="'.$this->fieldId.'" ';
+    }
+    if(isset($this->fieldName)){
+      $out .= ' name="'.$this->fieldName.'" ';
+    }
+    if(isset($this->fieldMultiple) && $this->fieldMultiple == true){
+      $out .= ' multiple ';
+    }
+    $out .= ' >';
+    if(isset($this->fieldDefaultOption) && !empty($this->fieldDefaultOption)){
+      foreach ($this->fieldDefaultOption as $key => $value){
+        $out .= '<option title="'.$value.'" ';
+        $out .= ' value="'.$key.'" ';
+        $out .= ' >'.$value.'</option>';
+      }
+    }
+    foreach ($this->fieldValues as $key => $value){
+      $out .= '<option title="'.$value.'" ';
+      if(is_array($this->fieldValue)){
+        foreach($this->fieldValue as $fieldValue){
+          if($fieldValue == $key){
+            $out .= ' selected="selected" ';
+          }
+        }
+      }else{
+        if($this->fieldValue == $key){
+          $out .= ' selected="selected" ';
+        }
+      }
+      
+      $out .= ' value="'.$key.'" ';
+      $out .= ' >'.$value.'</option>';
+    }
+    $out .= '</select>';
+    return $out;
+  }
+}
+?>

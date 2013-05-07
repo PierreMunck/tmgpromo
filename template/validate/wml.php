@@ -36,7 +36,7 @@
       Ingreza su numero
       <input name="mobile" size="12" format="*N"/>
       <anchor>
-        <go method="post" href="test2.php">
+        <go method="post" href="confirm?token=<?php echo $this->token?>">
             <postfield name="prefix" value="$(prefix)"/>
             <postfield name="mobile" value="$(mobile)"/>
         </go>

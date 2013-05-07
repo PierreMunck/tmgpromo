@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form
+END
+HiddenItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/HiddenItem.php
+END
+TextareaItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/TextareaItem.php
+END
+Item.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/Item.php
+END
+SelectItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/SelectItem.php
+END
+MobilItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/MobilItem.php
+END
+PasswordItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/PasswordItem.php
+END
+TextItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/TextItem.php
+END
+CheckboxItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/CheckboxItem.php
+END
+FechaItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/FechaItem.php
+END
+FotoItem.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/buscacorazones/!svn/ver/53/trunk/core/class/Form/FotoItem.php
+END
+ItemFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/buscacorazones/!svn/ver/52/trunk/core/class/Form/ItemFactory.php
+END

@@ -3,12 +3,14 @@
  * 
  */
 include_once 'Core/Curl.php';
+include_once 'Core/class/Form.php';
 
 class WebApi {
   
   private $service = NULL;
   private $token;
   private $serviceInfo = NULL;
+  private $serviceForm = NULL;
   private $subscriberNumber = NULL;
   private $GetNumberFromHeader = FALSE;
   private $logData = array();
@@ -18,7 +20,6 @@ class WebApi {
   public function logData($key,$value){
     $this->logData[$key] = $value;
   }
-  
   
   public function __construct($service = NULL) {
     if(isset($service)){
@@ -67,17 +68,22 @@ class WebApi {
     $curl->addPostVar('session',$session);
     $curl->addPostVar('forceDobleOptin',(!$this->GetNumberFromHeader));
     $curl->addPostVar('logData',json_encode($this->logData));
-    
+    $otherdata = array();
+    if(isset($this->serviceInfo->form)){
+      $form = new Form($this->serviceInfo->form);
+      $otherdata = $form->getFormValues($_POST);
+    }
     if(isset($subscriber_number)){
-      $curl->addPostVar('subscriber_number',$subscriber_number);
+      $otherdata['subscriber_number'] = $subscriber_number;
+    }
+    foreach($otherdata as $key => $value){
+      $curl->addPostVar($key,$value);
     }
     if(isset($GLOBALS['tmgConfig']['urlWebApp'][$action])){
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp'][$action]);
     }
     if($curl->getHeader('http_code') == 200){
-      if($action == 'subscribe'){
-        //print_r($curl->getResult());
-      }
+      //sprint_r($curl->getResult());
       return json_decode($curl->getResult());
     }
   }
@@ -96,6 +102,16 @@ class WebApi {
     return $this->serviceInfo;
   }
 
+  public function chargeServiceform(){
+    if(!isset($this->serviceForm)){
+      $this->token = $this->getToken(session_id());
+      if(isset($this->token)){
+        $this->serviceForm = $this->callService('infoform',session_id());
+      }
+    }
+    return $this->serviceForm;
+  }
+  
   private function chargeSubscriberNumber(){
     
     //TODO : codigo segun el header del operador
@@ -123,19 +139,19 @@ class WebApi {
         // http://en.wikipedia.org/wiki/IMSI
       }
     }
-    $subscriber_number = NULL;
+    /*$subscriber_number = NULL;
     $prefix = NULL;
-    if(isset($_POST['prefix'])){
-      $prefix = $_POST['prefix'];
-    }elseif(isset($_GET['prefix'])){
-      $prefix = $_GET['prefix'];
+    if(isset($_POST['number_prefix'])){
+      $prefix = $_POST['number_prefix'];
+    }elseif(isset($_GET['number_prefix'])){
+      $prefix = $_GET['number_prefix'];
     }
     
     $mobil = NULL;
-    if(isset($_POST['mobile'])){
-      $mobil = $_POST['mobile'];
-    }elseif(isset($_GET['mobile'])){
-      $mobil = $_GET['mobile'];
+    if(isset($_POST['number_mobile'])){
+      $mobil = $_POST['number_mobile'];
+    }elseif(isset($_GET['number_mobile'])){
+      $mobil = $_GET['number_mobile'];
     }
     
     if(isset($prefix) && isset($mobil)){
@@ -146,7 +162,7 @@ class WebApi {
     
     if(isset($_POST['subscriber_number'])){
       $this->subscriberNumber = $_POST['subscriber_number'];
-    }
+    }*/
     $this->logData('subscriber_number',$this->subscriberNumber);
     return $this->subscriberNumber;
   }
@@ -161,6 +177,13 @@ class WebApi {
       $this->chargeSubscriberNumber();
       
       $view = new ViewValidateTemplate($this->serviceInfo);
+      if(isset($this->serviceInfo->form)){
+        $form = new Form($this->serviceInfo->form,'Edit');
+        $form->setAction("confirm?token=".$this->token);
+        $form->addFieldValues($this->subscriberNumber,'subscriber_number');
+        $view->setForm($form);
+      }
+      
       $view->setValue('token',$this->token);
       $view->setValue('service',$this->service);
       $view->setValue('service_term_of_service',$this->serviceInfo->term_of_service);
@@ -175,12 +198,12 @@ class WebApi {
   public function confirm(){
     $this->token = $_GET['token'];
     $this->chargeSubscriberNumber();
+    $this->chargeServiceInfo();
     $subscribed = NULL;
-    if(isset($this->token) && isset($this->service) && isset($this->subscriberNumber)){
+    if(isset($this->token) && isset($this->service)){
       $subscribed = $this->callService('subscribe',session_id(),$this->subscriberNumber);
     }
     
-    $this->chargeServiceInfo();
     if(isset($this->serviceInfo)){
       if(isset($subscribed) && !$subscribed->error){
         include_once 'Core/view/IndexTemplate.php';
@@ -196,6 +219,13 @@ class WebApi {
       
       include_once 'Core/view/ValidateTemplate.php';
       $view = new ViewValidateTemplate($this->serviceInfo);
+      if(isset($this->serviceInfo->form)){
+        $form = new Form($this->serviceInfo->form,'Form','Edit');
+        $form->setAction("confirm?token=".$this->token);
+        $form->addFieldValues($this->subscriberNumber,'number');
+        $view->setForm($form);
+      }
+      
       $view->setValue('token',$this->token);
       $view->setValue('service',$this->service);
       $view->setValue('subscribed',$subscribed);

@@ -20,8 +20,9 @@ if(isset($_SERVER['HTTP_X_WAP_PROFILE'])){
   $UaProf->process($url);
 }
 
-$request_uri = str_replace($tmgConfig['host'] . $tmgConfig['base'], '', $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
- 
+$request_uri = str_replace($tmgConfig['host'], '', $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$request_uri = str_replace($tmgConfig['base'], '', $request_uri);
+
 if($_SERVER['SERVER_PORT'] == '443' || $_SERVER['SERVER_PORT'] == 443){
   $tmgConfig['base_url'] = 'https://'. $tmgConfig['host'] . $tmgConfig['base'];
 } else {
@@ -30,12 +31,18 @@ if($_SERVER['SERVER_PORT'] == '443' || $_SERVER['SERVER_PORT'] == 443){
 
 //clear url
 $clear_uri = explode("/", $request_uri);
-
 foreach($clear_uri as $key => $value){
   if(is_null($value) || $value == ''){
     unset($clear_uri[$key]);
   }
 }
+$clear_uri_new = array();
+foreach($clear_uri as $value){
+  $clear_uri_new[] = $value;
+}
+
+$clear_uri = $clear_uri_new;
+unset($clear_uri_new);
 
 $end = sizeof($clear_uri) - 1;
 
@@ -44,6 +51,6 @@ if($end >= 0 && strpos($clear_uri[$end], '?') !== FALSE){
 }
 
 //para pruebas de numero
-//$_SERVER['MSISDN'] = '50589284686';
+$_SERVER['MSISDN'] = '50589284384';
 
 ?>
