@@ -83,7 +83,7 @@ class WebApi {
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp'][$action]);
     }
     if($curl->getHeader('http_code') == 200){
-      //sprint_r($curl->getResult());
+      print_r($curl->getResult());
       return json_decode($curl->getResult());
     }
   }
