@@ -27,16 +27,18 @@ class FormSubmitItem extends FormItem{
     $out .= " >\n";
     return $out;
   }
+  
   protected function renderSubmitWapEdit(){
-    $out = "<anchor>";
+    $out = "<anchor>\n";
     //form method form url retrun
-    $out .= "<go method=\"".$this->formMethod."\" href=\"".$this->formAction."\">";
-    foreach ($this->$fieldList as $key => $value) {
-      $out .= "<postfield name=\"".$key.'\" value="$('.$value.")\"/>";
+    $out .= "\t<go method=\"".$this->formMethod."\" href=\"".$this->formAction."\">\n";
+    foreach ($this->fieldList as $key => $value) {
+      $out .= "\t\t<postfield name=\"".$key."\" value=\"$(".$value.")\"/>\n";
     }
-    $out .= "</go>";
+    $out .= "\t</go>\n";
     $out .= $this->fieldTitle;
-    $out .= "</anchor>";
+    $out .= "\n</anchor>\n";
+    return $out;
   }
   
   public function setFieldList($fieldList){

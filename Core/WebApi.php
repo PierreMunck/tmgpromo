@@ -83,7 +83,9 @@ class WebApi {
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp'][$action]);
     }
     if($curl->getHeader('http_code') == 200){
-      print_r($curl->getResult());
+      /*if ($action == 'subscribe') {
+        print_r($curl->getResult());
+      }*/
       return json_decode($curl->getResult());
     }
   }
@@ -220,9 +222,9 @@ class WebApi {
       include_once 'Core/view/ValidateTemplate.php';
       $view = new ViewValidateTemplate($this->serviceInfo);
       if(isset($this->serviceInfo->form)){
-        $form = new Form($this->serviceInfo->form,'Form','Edit');
+       $form = new Form($this->serviceInfo->form,'Edit');
         $form->setAction("confirm?token=".$this->token);
-        $form->addFieldValues($this->subscriberNumber,'number');
+        $form->addFieldValues($this->subscriberNumber,'subscriber_number');
         $view->setForm($form);
       }
       

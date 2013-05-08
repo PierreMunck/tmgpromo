@@ -81,7 +81,7 @@ class FormNumberItem extends FormItem{
           $out .= " ".$key."=\"".$value."\" ";
         }
       }
-      $out .=">\n";
+      $out .=" />\n";
     }
     return $out;
   }
@@ -97,5 +97,13 @@ class FormNumberItem extends FormItem{
     }
   }
   
+  public function Submitcampo(&$SubmitCampo){
+    if(isset($this->fieldValue)){
+      $SubmitCampo['fields'][$this->fieldName] = $this->fieldName;
+    }else{
+      $SubmitCampo['fields'][$this->fieldName."_prefix"] = $this->fieldName."_prefix";
+      $SubmitCampo['fields'][$this->fieldName."_mobile"] = $this->fieldName."_mobile";
+    }
+  }
 }
 ?>

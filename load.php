@@ -51,6 +51,6 @@ if($end >= 0 && strpos($clear_uri[$end], '?') !== FALSE){
 }
 
 //para pruebas de numero
-$_SERVER['MSISDN'] = '50589281947';
+//$_SERVER['MSISDN'] = '50589281947';
 
 ?>

@@ -17,7 +17,7 @@
   </p>
 <?php endif;?>
   <div class="block-service" >
-    <img src="<?php echo $this->img_service?>" />
+    <img src="<?php echo $this->img_service?>" width="100%"/>
     <p width="<?php echo $this->width?>">
       <?php echo $this->service_description?>
     </p>

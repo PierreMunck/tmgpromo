@@ -103,5 +103,9 @@ class FormItem {
     }
     return 'Unknow type form Item';
   }
+  
+  public function submitCampo(&$SubmitCampo){
+    $SubmitCampo['fields'][$this->fieldName] = $this->fieldName;
+  }
 }
 ?>

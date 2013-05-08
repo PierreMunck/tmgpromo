@@ -38,6 +38,8 @@ class ViewTemplate {
     }else {
       $this->mode = MODE_NAVIGADOR;
     }
+    // TODO: remove
+    $this->mode = MODE_WML;
   }
   
   public function setProfileMobile($UaProf){

@@ -167,42 +167,40 @@ class Form {
     $out .= ' >';
     $SubmitCampo = array();
     foreach ($this->description as $fieldName => $info) {
-      if($info['type'] == 'Hidden'){
+      if($info['type'] == 'hidden' || $info['type'] == 'Hidden'){
         $this->descriptionHiddenCampo[$fieldName] = $info;
         unset($this->description[$fieldName]);
       }
-      if($info['type'] == 'Submit'){
-        $info['fieldName'] = $fieldName; 
-        $SubmitCampo = $info;
+      if($info['type'] == 'submit' || $info['type'] == 'Submit'){
+        $info['fieldName'] = $fieldName;
+        $SubmitCampo = array_merge($info, $SubmitCampo);
         unset($this->description[$fieldName]);
-      }else{
-        if(!isset($SubmitCampo['fields'])){
-          $SubmitCampo['fields'] = array();
-        }
-        $SubmitCampo['fields'][$fieldName] = $fieldName; 
-      }
+      } 
     }
+    
     foreach ($this->description as $fieldName => $info) {
       $item = FormItemFactory::factory($fieldName,$info,$this->type.$this->mode);
-      
-      
       if(isset($this->formValues) && isset($this->formValues[$fieldName])){
         $item->setFieldValue($this->formValues[$fieldName]);
       }
+      $item->submitCampo($SubmitCampo);
       $out .= $item->render();
     }
+    
     foreach ($this->descriptionHiddenCampo as $fieldName => $info) {
       $item = FormItemFactory::factory($fieldName,$info,$this->type.$this->mode);
       if(isset($this->formValues) && isset($this->formValues[$fieldName])){
         $item->setFieldValue($this->formValues[$fieldName]);
       }
+      $item->submitCampo($SubmitCampo);
       $out .= $item->render();
     }
     
-    $item = FormItemFactory::factory($fieldName,$info,$this->type.$this->mode);
+    $item = FormItemFactory::factory($SubmitCampo['fieldName'],$SubmitCampo,$this->type.$this->mode);
     $item->setFormMethod($this->formMethod);
-    $item->setActionMethod($this->formAction);
+    $item->setFormAction($this->formAction);
     $out .= $item->render();
+    
     $out .= '</p>';
     return $out;
   }
