@@ -15,7 +15,7 @@
     <?php echo $this->subscribed->mesage ?>
   </p>
 <?php endif;?>
-    <p><img src="<?php echo $img_service?>" width="100%"/></p>
+    <p><img src="<?php echo $this->img_service?>" width="100%"/></p>
     <p width="<?php echo $this->width?>">
       <?php echo $this->service_description?>
     </p>

@@ -4,7 +4,7 @@
  */
 include_once 'Core/view/Template.php';
 
-class ViewValidateTemplate extends ViewTemplate{
+class ViewGeneralTemplate extends ViewTemplate{
   
   protected $service_name = NULL;
   protected $service = NULL;
@@ -23,7 +23,6 @@ class ViewValidateTemplate extends ViewTemplate{
      $this->form->addFieldValues($img_btn,'submit');
      $this->form->addFieldOptions(array('style' => 'width:100%'),'submit');
      $this->form->addFieldOptions(array('style' => 'width:100%'),'number');
-     $this->form->addFieldOptions(array('style' => 'width:100%'),'select');
      
      if($this->mode == MODE_WML){
        $this->form->setType("Wap");

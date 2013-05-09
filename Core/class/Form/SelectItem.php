@@ -40,6 +40,11 @@ class FormSelectItem extends FormItem{
     if(isset($this->fieldMultiple) && $this->fieldMultiple == true){
       $out .= ' multiple ';
     }
+    if(!empty($this->fieldOption)){
+      foreach ($this->fieldOption as $key => $value) {
+        $out .= " ".$key."=\"".$value."\" ";
+      }
+    }
     $out .= ' >';
     if(isset($this->fieldDefaultOption) && !empty($this->fieldDefaultOption)){
       foreach ($this->fieldDefaultOption as $key => $value){

@@ -141,30 +141,6 @@ class WebApi {
         // http://en.wikipedia.org/wiki/IMSI
       }
     }
-    /*$subscriber_number = NULL;
-    $prefix = NULL;
-    if(isset($_POST['number_prefix'])){
-      $prefix = $_POST['number_prefix'];
-    }elseif(isset($_GET['number_prefix'])){
-      $prefix = $_GET['number_prefix'];
-    }
-    
-    $mobil = NULL;
-    if(isset($_POST['number_mobile'])){
-      $mobil = $_POST['number_mobile'];
-    }elseif(isset($_GET['number_mobile'])){
-      $mobil = $_GET['number_mobile'];
-    }
-    
-    if(isset($prefix) && isset($mobil)){
-      $this->subscriberNumber = $prefix.$mobil;
-      $this->logData('subscriber_number',$this->subscriberNumber);
-      return $this->subscriberNumber;
-    }
-    
-    if(isset($_POST['subscriber_number'])){
-      $this->subscriberNumber = $_POST['subscriber_number'];
-    }*/
     $this->logData('subscriber_number',$this->subscriberNumber);
     return $this->subscriberNumber;
   }
