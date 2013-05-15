@@ -54,7 +54,6 @@ class WebApi {
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp']['log']);
     }
     if($curl->getHeader('http_code') == 200){
-      //print_r($curl->getResult());
       return TRUE;
     }
     return FALSE;
@@ -83,9 +82,6 @@ class WebApi {
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp'][$action]);
     }
     if($curl->getHeader('http_code') == 200){
-      /*if ($action == 'subscribe') {
-        print_r($curl->getResult());
-      }*/
       return json_decode($curl->getResult());
     }
   }

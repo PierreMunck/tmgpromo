@@ -5,7 +5,10 @@
     <link href="template/css/navegador.css" rel="stylesheet" type="text/css"  />
     <style type="text/css">
       a {text-decoration:none;}
+      p {font-size:18px;font-weight:bold;}
       .termofservice {color:#bbbbbb;font-size:12px;}
+      input{width:100%}
+      textarea{width:100%}
     </style>
     
   </head>

@@ -27,7 +27,11 @@ class FormSelectItem extends FormItem{
   }
   
   protected function renderSelectFormEdit(){
-    $out = '<select ';
+   $out = ' ';
+    if(isset($this->fieldTitle)){
+      $out = $this->fieldTitle."<br/>";
+    }
+    $out .= '<select ';
     if(isset($this->fieldClass)){
       $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
     }
@@ -75,7 +79,11 @@ class FormSelectItem extends FormItem{
   }
 
   protected function renderSelectWapEdit(){
-    $out = '<select ';
+    $out = ' ';
+    if(isset($this->fieldTitle)){
+      $out = $this->fieldTitle."<br/>";
+    }
+    $out .= '<select ';
     if(isset($this->fieldClass)){
       $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
     }
@@ -117,15 +125,5 @@ class FormSelectItem extends FormItem{
     return $out;
   }
 
-  public function returnValue($post){
-    
-    if(isset($post[$this->fieldName.'_prefix']) && isset($post[$this->fieldName.'_mobile'])){
-      return $post[$this->fieldName.'_prefix'].$post[$this->fieldName.'_mobile'];
-    }
-      
-    if(isset($post[$this->fieldName])){
-      return $post[$this->fieldName];
-    }
-  }
 }
 ?>

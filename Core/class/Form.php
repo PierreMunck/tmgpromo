@@ -142,6 +142,7 @@ class Form {
         $item->setFieldValue($this->formValues[$fieldName]);
       }
       $out .= $item->render();
+      $out .= "<br/>";
     }
     foreach ($this->descriptionHiddenCampo as $fieldName => $info) {
       $item = FormItemFactory::factory($fieldName,$info,$this->type.$this->mode);

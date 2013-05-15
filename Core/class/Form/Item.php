@@ -107,5 +107,11 @@ class FormItem {
   public function submitCampo(&$SubmitCampo){
     $SubmitCampo['fields'][$this->fieldName] = $this->fieldName;
   }
+
+  public function returnValue($post){
+    if(isset($post[$this->fieldName])){
+      return $post[$this->fieldName];
+    }
+  }
 }
 ?>

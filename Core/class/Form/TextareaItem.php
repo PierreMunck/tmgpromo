@@ -8,8 +8,12 @@ class FormTextareaItem extends FormItem{
     parent::__construct('Textarea',$mode);
   }
   
-  protected function renderTextareaEdit(){
-    $out = '<textarea ';
+  protected function renderTextareaFormEdit(){
+    $out = ' ';
+    if(isset($this->fieldTitle)){
+      $out = $this->fieldTitle."<br/>";
+    }
+    $out .= '<textarea ';
     if(isset($this->fieldClass)){
       $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
     }
@@ -30,4 +34,32 @@ class FormTextareaItem extends FormItem{
     $out .= '</textarea>';
     return $out;
   }
+  
+  protected function renderTextareaWapEdit(){
+    $out = ' ';
+    if(isset($this->fieldTitle)){
+      $out = $this->fieldTitle."<br/>";
+    }
+    $out .= '<textarea ';
+    if(isset($this->fieldClass)){
+      $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
+    }
+    if(isset($this->fieldId)){
+      $out .= ' id="'.$this->fieldId.'" ';
+    }
+    if(isset($this->fieldName)){
+      $out .= ' name="'.$this->fieldName.'" ';
+    }
+    $out .= ' type="text" ';
+    if(isset($this->fieldTitle)){
+      $out .= ' title="'.$this->fieldTitle.'" ';
+    }
+    $out .= ' >';
+    if(isset($this->fieldValue)){
+      $out .= $this->fieldValue;
+    }
+    $out .= '</textarea>';
+    return $out;
+  }
+  
 }

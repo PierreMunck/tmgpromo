@@ -9,7 +9,11 @@ class FormTextItem extends FormItem{
   }
   
   protected function renderTextFormEdit(){
-    $out = '<input ';
+    $out = ' ';
+    if(isset($this->fieldTitle)){
+      $out = $this->fieldTitle."<br/>";
+    }
+    $out .= '<input ';
     if(isset($this->fieldClass)){
       $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
     }
@@ -29,5 +33,32 @@ class FormTextItem extends FormItem{
     $out .= ' />';
     return $out;
   }
+  
+  protected function renderTextWapEdit(){
+    $out = ' ';
+    if(isset($this->fieldTitle)){
+      $out = $this->fieldTitle."<br/>";
+    }
+    $out .= '<input ';
+    if(isset($this->fieldClass)){
+      $out .= ' class="'.implode(' ', $this->fieldClass).'" ';
+    }
+    if(isset($this->fieldId)){
+      $out .= ' id="'.$this->fieldId.'" ';
+    }
+    if(isset($this->fieldName)){
+      $out .= ' name="'.$this->fieldName.'" ';
+    }
+    $out .= ' type="text" ';
+    if(isset($this->fieldTitle)){
+      $out .= ' title="'.$this->fieldTitle.'" ';
+    }
+    if(isset($this->fieldValue)){
+      $out .= ' value="'.$this->fieldValue.'" ';
+    }
+    $out .= ' />';
+    return $out;
+  }
+  
 }
 ?>
