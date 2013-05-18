@@ -71,6 +71,12 @@ class WebApi {
     if(isset($this->serviceInfo->form)){
       $form = new Form($this->serviceInfo->form);
       $otherdata = $form->getFormValues($_POST);
+      if($otherdata == NULL){
+        $error = new stdClass();
+        $error->error = TRUE;
+        $error->mesage = "Formulario Invalido";
+        return $error;
+      }
     }
     if(isset($subscriber_number)){
       $otherdata['subscriber_number'] = $subscriber_number;
@@ -82,6 +88,7 @@ class WebApi {
       $curl->exec($GLOBALS['tmgConfig']['urlWebApp'][$action]);
     }
     if($curl->getHeader('http_code') == 200){
+      //print_r($curl->getResult());
       return json_decode($curl->getResult());
     }
   }

@@ -1,6 +1,6 @@
 <?php
 
-$_GET['file'];
+/*$_GET['file'];
 $file_path = realpath("../%%cont/??!@sms/");
 $file = $file_path ."/". $_GET['file'];
 
@@ -16,6 +16,28 @@ header("Content-Disposition: attachment; filename=".basename($file));
 header("Content-Transfer-Encoding: binary");
 header('Content-length: '.filesize($file));  
 
-@readfile($file);
+@readfile($file);*/
+
+$test =array(
+ "g67",
+  "45j",
+  "46<html>",
+  "tryrirnricnf",
+  "9",
+  "10",
+  "23",
+  "99",
+  "100",
+);
+$i = 1;
+foreach ($test as $value) {
+	echo "test $i:      ";
+  print_r(intval($value));
+  if(preg_match("/^[1-9][0-9]$/",intval($value))){
+    echo "valid regexp";
+  }
+  echo "\n";
+  $i++;
+}
 
 ?>

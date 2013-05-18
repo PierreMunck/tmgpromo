@@ -109,7 +109,12 @@ class Form {
     unset($this->description['Description']);
     foreach ($this->description as $fieldName => $info) {
       $item = FormItemFactory::factory($fieldName,$info);
-      $result[$fieldName] = $item->returnValue($post);
+      $value = $item->returnValue($post);
+      //TODO verificar si el campo es obligatorio
+      if($info['type'] != 'number' && $value == NULL){
+        return NULL;
+      }
+      $result[$fieldName] = $value;
     }
     return $result;
   }

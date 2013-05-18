@@ -99,7 +99,7 @@ class FormItem {
         $funcRender = 'render'.$this->type.$this->mode;
         return $this->$funcRender();
       }
-      return 'Unknow mode form Item'.$this->mode;
+      return 'Unknow mode : '.$this->mode.' render :'. 'render'.$this->type.$this->mode;
     }
     return 'Unknow type form Item';
   }

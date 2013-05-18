@@ -5,6 +5,8 @@ require_once "SelectItem.php";
 require_once "TextareaItem.php";
 require_once "FotoItem.php";
 require_once "TextItem.php";
+require_once "TextedadItem.php";
+require_once "TextintegerItem.php";
 require_once "PasswordItem.php";
 require_once "CheckboxItem.php";
 require_once "NumberItem.php";
@@ -19,6 +21,12 @@ class FormItemFactory {
       switch ($type) {
         case 'Text':
           $item = new FormTextItem($mode);
+          break;
+        case 'Textedad':
+          $item = new FormTextedadItem($mode);
+          break;
+        case 'Textinteger':
+          $item = new FormTextintegerItem($mode);
           break;
         case 'Password':
           $item = new FormPasswordItem($mode);

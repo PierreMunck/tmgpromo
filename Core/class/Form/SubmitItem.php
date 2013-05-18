@@ -54,7 +54,7 @@ class FormSubmitItem extends FormItem{
   }
   
   public function returnValue($post){
-    return NULL;
+    return TRUE;
   }
 }
 ?>
