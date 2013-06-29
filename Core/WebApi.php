@@ -125,9 +125,11 @@ class WebApi {
       if(preg_match('/LINE-ID/i', $key)){
         $this->subscriberNumber = $_SERVER[$key]; // 
       }
+      // MOVISTAR  HTTP_X_UP_CALLING_LINE_ID
       if(preg_match('/LINE_ID/i', $key)){
         $this->subscriberNumber = $_SERVER[$key]; // 
       }
+      // CLARO HTTP_X_NOKIA_MSISDN
       if(preg_match('/MSISDN/i', $key)){
         $this->subscriberNumber = $_SERVER[$key]; // http://en.wikipedia.org/wiki/MSISDN
         $this->logData('subscriber_number',$this->subscriberNumber);
